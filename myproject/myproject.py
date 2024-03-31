@@ -29,10 +29,8 @@ def insert():
 def display():
     cursor = mysql.connection.cursor()
     cursor.execute("select * from MyUsers")
-    output = cursor.fetchall()
-    res = str(output).strip('[]')
-
-    return res
+    data = cursor.fetchall()
+    return render_template('db.html', data = data)
 
 
 if __name__ == '__main__':
