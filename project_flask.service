@@ -1,0 +1,11 @@
+[Unit]
+Description=Gunicorn instance to serve project_flask
+After=network.target
+[Service]
+User=cubinez85
+Group=www-data
+WorkingDirectory=/var/www/project_flask
+Environment="PATH=/var/www/project_flask/venv/bin"
+ExecStart=/var/www/project_flask/venv/bin/gunicorn --workers 3 --bind unix:project_flask.sock -m 007 wsgi:app
+[Install]
+WantedBy=multi-user.target
